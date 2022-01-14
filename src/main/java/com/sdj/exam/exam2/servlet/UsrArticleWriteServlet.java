@@ -1,14 +1,16 @@
-package com.sdj.exam.exam2;
+package com.sdj.exam.exam2.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/usr/home/main")
-public class UsrHomeMain extends HttpServlet {
+@WebServlet("/usr/article/write")
+public class UsrArticleWriteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
@@ -21,7 +23,9 @@ public class UsrHomeMain extends HttpServlet {
 		// HTML이 UTF-8 형식이라는 것을 브라우저에게 알린다.
 		response.setContentType("text/html; charset=UTF-8");
 
-		response.getWriter().append(name);
+		//JSP랑 연결
+		RequestDispatcher requestDispatcher =request.getRequestDispatcher("/WEB-INF/usr/article/write.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 
